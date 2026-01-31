@@ -23,9 +23,11 @@ class Solution {
          [&](const auto& p1, const auto& p2) -> bool {
            return grid[p1.first][p1.second] < grid[p2.first][p2.second];
          });
+
     vector<vector<int>> costs(m, vector<int>(n, INT_MAX));
     for (int t = 0; t <= k; t++) {
       int minCost = INT_MAX;
+      // 텔레포트
       for (int i = 0, j = 0; i < points.size(); i++) {
         minCost = min(minCost, costs[points[i].first][points[i].second]);
         if (i + 1 < points.size() &&
@@ -38,6 +40,7 @@ class Solution {
         }
         j = i + 1;
       }
+      // 갱신
       for (int i = m - 1; i >= 0; i--) {
         for (int j = n - 1; j >= 0; j--) {
           if (i == m - 1 && j == n - 1) {
